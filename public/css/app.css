@@ -97,6 +97,10 @@
     font-size: 1em;
     font-weight: 500;
   }
+  .eform{
+    width: 50%;
+    margin: 0 auto;
+  }
   
   #button {
     z-index: 2;
@@ -130,6 +134,10 @@
 @media only screen and (max-width: 600px) {
     .student .list-group{
         width:100%;
+    }
+    .eform{
+      width: 100%;
+      margin: 0 auto;
     }
 }
 @media only screen and (max-width: 600px) {
