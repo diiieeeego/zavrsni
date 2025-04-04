@@ -31,24 +31,43 @@ router.post('/registerStudent', catchAsync(async (req, res, next) => {
     }
 }));
 
-//registracija novog admina
 router.post('/registerAdmin', catchAsync(async (req, res, next) => {
     try {
         const { username, email, ime, prezime, password } = req.body;
-        const user = new User({username, role: 'admin'})
-        const admin = new Admin({ username, email, ime, prezime});
+
+        // Check if username is provided
+        if (!username || !email || !password) {
+            req.flash('error', 'Username, email, and password are required!');
+            return res.redirect('/auth/register');
+        }
+
+        // Check if username already exists in User collection
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            req.flash('error', 'Username is already taken!');
+            return res.redirect('/auth/register');
+        }
+
+        // Create and save admin
+        const admin = new Admin({ username, email, ime, prezime });
         await admin.save();
+
+        // Create and register user
+        const user = new User({ username, role: 'admin' });
         const noviUser = await User.register(user, password);
+
+        // Login the newly registered user
         req.login(noviUser, err => {
             if (err) return next(err);
             req.flash('success', 'Dobrodošli u eStudent!');
             res.redirect(`/admin`);
-        })
+        });
     } catch (e) {
         req.flash('error', e.message);
         res.redirect('/auth/register');
     }
 }));
+
 
 router.get('/login', (req, res) => {
     if (req.user) {
