@@ -9,13 +9,6 @@ const Ispit = require('../models/ispit');
 const Student = require('../models/student');
 const Kolegij = require('../models/kolegij');
 
-/* const isStudent = async (req, res, next) =>{
-    if(req.user.role !== 'student'){
-        res.redirect('/admin');
-    }
-    next();
-} */
-
 //putanje se odnose na profil jednog studenta
 //dohvat podataka jednog studenta, po ideji prijavljenog u sustav
 router.get('/', isLoggedIn, isStudent, catchAsync(async (req, res) => {
