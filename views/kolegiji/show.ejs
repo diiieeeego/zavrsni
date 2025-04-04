@@ -1,0 +1,87 @@
+<% layout('/layouts/boilerplate') %>
+    <div class="row mt-3">
+        <div class="col-md-6 col-12 text-center text-md-start">
+            <a href="/admin/kolegiji">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor"
+                    class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+                </svg>
+            </a>
+            <h1 class="text-primary mt-3">
+                <%= kolegij.naziv %>
+            </h1>
+            <h5 class="mb-4">
+                <%= kolegij.nositelj %>
+            </h5>
+            <div class="d-flex flex-wrap my-4 justify-content-center justify-content-md-start">
+                <a class="btn btn-primary me-2 mb-2" href="/admin/kolegiji/edit/<%= kolegij._id %>">Uredi</a>
+                <form action="/admin/kolegiji/<%= kolegij._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger mb-2">Obrisi</button>
+                </form>
+            </div>
+            
+            
+        </div><!-- col -->
+
+        <!-- //Dodavanje novog ispita (isStudent=false) -->
+
+        <div class="col-md-6 col-12 mt-5 mt-md-0 ms-auto">
+            <form action="/admin/kolegiji/<%= kolegij._id %>/ispiti" class="form-control bg-secondary  needs-validation" method="POST"
+                novalidate>
+                <h5 class="text-center mt-2  text-white">Dodaj ispit</h5>
+                <div class="mb-2">
+                    <label class="text-white" for="naziv">Naslov: </label>
+                    <input class="form-control" type="text" id="naslov" name="ispit[naslov]" required>
+                </div>
+                <div class="mb-3">
+                    <label class="text-white" for="naziv">Datum: </label>
+                    <input class="form-control" type="date" id="datum" name="ispit[datum]" required>
+                </div>
+                <div class="mb-2 text-center">
+                    <button class="btn btn-primary">Spremi</button>
+                </div>
+            </form>
+        </div><!-- col -->
+
+    </div><!-- row -->
+    <div class="row mt-md-0 mt-4">
+        <div class="col-md-6 mt-4">
+            <h5>Ispitni rokovi</h5>
+            <ul class="list-group">
+                <% for( let ispit of kolegij.ispiti ) { %>
+                    <li class="list-group-item">
+                            <a href="/admin/ispiti/<%= ispit._id %>"><%= ispit.naslov + " - " + ispit.datum %></a>
+                        </li>
+                    <% } %>
+            </ul>
+            <h5 class="mt-5">Upisani studenti</h5>
+            <ul class="list-group">
+                <% for( let student of kolegij.studenti ) { %>
+                    <li class="list-group-item">
+                            <a href="/admin/studenti/<%= student._id %>"><%= student.ime + " " + student.prezime %></a>
+                        </li>
+                    <% } %>
+            </ul>
+            
+        </div>
+        <div class="col-md-6">
+            <form action="/admin/kolegiji/<%= kolegij._id %>/student" class="form-control my-4 bg-secondary  needs-validation" method="POST"
+                novalidate>
+                <h5 class="text-center my-2  text-white">Upiši studenta</h5>
+                <label class="text-white" for="studentId">Odaberi studenta:</label>
+                <select name="studentId" id="studentId" class="form-control">
+                    <% for( let student of neupisani ) { %>
+                        <% if (!(student.ime===undefined)&&student.username!=="admin") { %>
+                        <option value="<%= student._id %>">
+                            <%= student.ime + " " + student.prezime %>
+                        </option>
+
+                        <%} } %>
+                </select>
+                <div class="my-2 text-center">
+                    <button class="btn btn-primary">Spremi</button>
+                </div>
+            </form>
+        </div>
+    </div>

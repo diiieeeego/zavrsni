@@ -1,0 +1,23 @@
+<% layout('/layouts/boilerplate') %>
+    <h1 class="text-center my-3">Uredi Kolegij</h1>
+    <!--?method=PUT pomocu methodOverride mozemo urediti kolegiji-->
+    <form class="uredi-kolegij mx-auto form-control py-2 needs-validation" action="/admin/kolegiji/<%= kolegij._id %>?_method=PUT"
+        method="POST" novalidate>
+        <div class="mb-2">
+            <label for="naziv">Naziv: </label>
+            <input class="form-control" type="text" id="naziv" name="kolegij[naziv]" value="<%= kolegij.naziv %>"
+                required>
+            
+        </div>
+        <div class="mb-3">
+            <label for="naziv">Nositelj: </label>
+            <input class="form-control" type="text" id="nositelj" name="kolegij[nositelj]"
+                value="<%= kolegij.nositelj %>" required>
+            
+        </div>
+        <div class="d-flex flex-wrap mb-2">
+            <button class="btn btn-success">Spremi</button>
+            <a class="btn btn-secondary ms-2" href="/admin/kolegiji/<%= kolegij._id %>">Povratak</a>
+        </div>
+    </form>
+    

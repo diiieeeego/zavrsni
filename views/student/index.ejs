@@ -1,0 +1,32 @@
+<% layout('./layouts/boilerplate') %>
+
+    <div class="student text-center">
+        <h1>
+            <%= student.prezime %>
+        </h1>
+        <h5>
+            <%= student.ime %>
+        </h5>
+        <div class="list-group mx-auto mt-3">  
+            <p class="list-group-item m-0">Id: <%= student._id %>
+            </p>          
+            <p class="list-group-item m-0">Status: <%= student.status %>
+            </p>
+            <p class="list-group-item m-0">Dob: <%= student.dob %>
+            </p>
+            <p class="list-group-item m-0">E-mail: <%= student.email %>
+            </p>
+<!--             <a class="btn btn-secondary text-decoration-none text-white" href="/student/<%= student._id %>/ocjene">ocjene</a>
+ -->
+        </div>
+    </div>
+
+    <h5 class="text-start mt-5 mb-2">Upisani kolegiji</h5>
+    
+    <div class="kolegiji d-flex flex-wrap pt-4">
+        <% for(let kolegij of student.kolegiji){ %>
+            <a class="card text-center text-decoration-none me-0 me-sm-4 mb-4" href="/student/<%= kolegij._id %>/<%= student._id %>">
+                <%= kolegij.naziv %>
+            </a>
+            <% } %>
+    </div>

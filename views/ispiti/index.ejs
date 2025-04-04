@@ -1,0 +1,14 @@
+<% layout('./layouts/boilerplate') %>
+    <h1 class="my-3">Popis Ispita</h1>
+    <hr>
+    <div class="d-flex flex-column mt-4">
+        <% for( let ispit of ispiti ) { %>
+            <div class="card text-center p-4 mb-4">
+                
+                <a class="nav-link"href="/admin/ispiti/<%= ispit._id %>">
+                    <%= ispit.kolegij.naziv %> - <%= ispit.naslov %>
+                </a>
+            </div>
+            <% } %>
+
+    </div>

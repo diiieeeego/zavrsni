@@ -1,0 +1,10 @@
+<% layout('/layouts/boilerplate') %>
+    <h1 class="my-3">eStudent - kolegiji</h1>
+    <div class="my-4">
+        <a class="btn bg-primary text-white" href="/admin/kolegiji/new">Novi kolegij</a>
+    </div>
+    <div class="kolegiji d-flex flex-wrap pt-4">
+    <% for(let kolegij of kolegiji){ %>
+        <a class="card text-center text-decoration-none me-0 me-sm-4 mb-4" href="/admin/kolegiji/<%= kolegij._id  %>"><%= kolegij.naziv %></a>
+    <% } %>
+    </div>

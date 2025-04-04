@@ -1,0 +1,35 @@
+<% layout('/layouts/boilerplate') %>
+<div class="d-flex flex-column mt-4">
+    <a href="/admin/ispiti">
+        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor"
+            class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+            <path
+                d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+        </svg>
+    </a>
+    <h2 class="text-primary mt-4"><%= ispit.naslov %></h2>
+    <h class="text-secondary"><small>Datum</small>: <%= ispit.datum %></h5>
+    <h3 class="text-dark"><small>Kolegij</small>: <%= ispit.kolegij.naziv %></h3>
+    <hr>
+    
+    <% if (ispit.rezultati.length > 0) { %>
+        <h5>Popis prijavljenih ispita: </h5>
+        <ul class="list-group">
+            <% for( let r of ispit.rezultati) { %>
+                <li class="list-group-item d-flex flex-wrap justify-content-between">
+                    <p class="mb-sm-0 d-flex align-items-center"><%= r.student + " - " + (r.ocjena ? "ocjena: "+r.ocjena : "") %></p> 
+                    <form class="d-flex" action="/admin/ispiti/<%= ispit._id %>/ocjeni/<%= r.student %>" method="POST">
+                        <select class="form-select me-2" name="ocjena" id="ocjena">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <button class="btn btn-primary">ocjeni</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    <% } %>
+</div>  

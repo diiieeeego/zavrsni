@@ -1,0 +1,25 @@
+<div class="navbar navbar-expand-md  bg-primary bg-gradient p-3">
+    <div class="container-md">
+        
+        <a class="navbar-brand text-decoration-none text-white" href="#">eStudent</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0 mt-3 mt-md-0 text-center ">
+                <% if (!currentUser) { %>
+                <li class="nav-item"><a class="nav-link text-white me-2" href="/auth/login">Prijavi se</a></li>
+                <li class="nav-item"><a class="nav-link text-white me-2" href="/auth/register">Registriraj se</a></li>
+                <% }else if(currentUser.role === 'admin'){ %>
+                <li class="nav-item"><a class="nav-link text-white me-2" href="/admin/ispiti">ispiti</a></li>
+                <li class="nav-item"><a class="nav-link text-white me-2" href="/admin/kolegiji">kolegiji</a></li>
+                <li class="nav-item"><a class="nav-link text-white me-2" href="/admin/studenti">studenti</a></li>
+                <li class="nav-item"><a class="nav-link text-white me-2" href="/auth/logout">Odjava</a></li>
+                <% } else{%>
+                    <li class="nav-item"><a class="nav-link text-white me-2" href="/auth/logout">Odjava</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<% layout('./layouts/boilerplate') %>
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <a href="/student">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor"
+                    class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1" />
+                </svg>
+            </a>
+            <h1 class="text-primary mt-4">
+                <%= kolegij.naziv %>
+            </h1>
+            <h5 class="mb-4">
+                <%= kolegij.nositelj %>
+            </h5>
+            <h5 class="mt-4">
+                Prijavljeni ispiti
+            </h5>
+            <ul class="list-group mb-4">
+                <% if (prijavljeni) { %>
+                    <% for( let ispit of prijavljeni ) { %>
+                        <% if (ispit.kolegij.equals(kolegij._id)) { %>
+                            <% for( let rezultat of ispit.rezultati ) { %>
+                                <% if (rezultat.student.equals(student._id)) { %>
+                                    <li key="<%= ispit._id %>" class="list-group-item">
+                                        <%= ispit.naslov + " / " + ispit.datum %> - ocjena: <%= rezultat.ocjena%>
+                                    </li>
+                                    <% } %>
+                                        <% }%>
+                                            <% } %>
+                                                <% } %>
+                                                    <% } %>
+
+            </ul>
+        </div>
+        <!--PRIJAVA ISPITA-->
+        <div class="col-md-6 col-12">
+            <form action="/student/ispiti/prijava" class="form-control needs-validation" method="POST" novalidate>
+                <h5 class="text-center mt-2">Prijavi ispit</h5>
+                <select name="ispitId" id="ispitId" class="form-control" required>
+                    <% for( let ispit of neprijavljeni) { %>
+                        <% if (!(ispit.naslov===undefined)) { %>
+                            <option value="<%= ispit._id %>">
+                                <%= ispit.naslov + " " + ispit.datum %>
+                            </option>
+                        <% } %>
+                        
+                        <% } %>       
+                </select>
+                <div class="mb-3 d-none">
+                    <label for="naziv">Kolegij_id: </label>
+                    <input class="form-control" type="text" id="kolegijId" name="kolegijId" value="<%= kolegij._id %>"
+                        required>
+                </div>
+                <div class="mb-3 d-none">
+                    <label for="naziv">Student: </label>
+                    <input class="form-control" type="text" id="studentId" name="studentId" value="<%= student._id %>"
+                        required>
+                </div>
+                <div class="my-2 text-center">
+                    <button class="btn btn-primary">Spremi</button>
+                </div>
+            </form>
+        </div>
+    </div>

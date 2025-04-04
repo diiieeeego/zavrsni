@@ -1,0 +1,11 @@
+<% layout('/layouts/boilerplate') %>
+
+    <h1 class="text-center my-5">Dobrodošli u eStudent</h1>
+    <div class="d-flex flex-row justify-content-center ">
+        <% if (!currentUser) { %>
+            <a href="/auth/login" class="card-title btn btn-primary me-2 text-white">Prijavi se</a>
+            <a href="/auth/register" class="card-title btn btn-secondary me-2 text-white">Registriraj se</a>   
+        <% } %>
+            
+    </div>
+    </div>

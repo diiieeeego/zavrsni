@@ -1,0 +1,29 @@
+<% layout('/layouts/boilerplate') %>
+    <h1 class="text-center my-3 ">Novi Student</h1>
+    <form class="w-75 mx-auto form-control py-2 needs-validation" action="/admin/studenti" method="POST" novalidate>
+        <div class="mb-2">
+            <label for="naziv">Ime:</label>
+            <input class="form-control" type="text" name="student[ime]" id="ime" required>           
+        </div>
+        <div class="mb-3">
+            <label for="naziv">Prezime:</label>
+            <input class="form-control" type="text" name="student[prezime]" id="prezime" required>   
+        </div>
+        <div class="mb-3">
+            <label for="naziv">Email:</label>
+            <input class="form-control" type="email" name="student[email]" id="email" required>   
+        </div>
+        <div class="mb-3">
+            <label for="naziv">Dob:</label>
+            <input class="form-control" type="text" name="student[dob]" id="dob" required>   
+        </div>
+        <div class="mb-3">
+            <label for="naziv">Status:</label>
+            <input class="form-control" type="text" name="student[status]" id="status" required>   
+        </div>
+        
+        <div>
+            <button class="btn btn-success me-2">Dodaj studenta</button>
+            <a href="/adminstudenti" class="btn btn-secondary">Povratak</a>
+        </div>
+    </form>

@@ -1,0 +1,18 @@
+<% layout('/layouts/boilerplate') %>
+    <h1 class="text-center my-3 ">Novi kolegij</h1>
+    <form class="w-75 mx-auto form-control py-2 needs-validation" action="/admin/kolegiji" method="POST" novalidate>
+        <div class="mb-2">
+            <label for="naziv">Naziv:</label>
+            <input class="form-control" type="text" name="kolegij[naziv]" id="naziv" required>
+            
+        </div>
+        <div class="mb-3">
+            <label for="naziv">Nositelj:</label>
+            <input class="form-control" type="text" name="kolegij[nositelj]" id="nositelj" required>
+        </div>
+        <div>
+            <button class="btn btn-success mb-2 mb-md-0">Dodaj kolegij</button>
+            <a href="/admin/kolegiji" class="btn btn-secondary">Povratak</a>
+        </div>
+    </form>
+    

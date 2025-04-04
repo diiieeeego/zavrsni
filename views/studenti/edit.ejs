@@ -1,0 +1,39 @@
+<% layout('/layouts/boilerplate') %>
+<h1 class="text-center my-3">Uredi Studenta</h1>
+    <!--?method=PUT pomocu methodOverride mozemo urediti kolegiji-->
+    <form class="uredi-kolegij mx-auto form-control py-2 needs-validation" action="/admin/studenti/<%= student._id %>?_method=PUT"
+        method="POST" novalidate>
+        <div class="mb-2">
+            <label for="naziv">Ime: </label>
+            <input class="form-control" type="text" id="ime" name="student[ime]" value="<%= student.ime %>"
+                required>
+            
+        </div>
+        <div class="mb-3">
+            <label for="naziv">prezime: </label>
+            <input class="form-control" type="text" id="prezime" name="student[prezime]"
+                value="<%= student.prezime %>" required>
+            
+        </div>
+        <div class="mb-3">
+            <label for="naziv">Dob: </label>
+            <input class="form-control" type="text" id="dob" name="student[dob]"
+                value="<%= student.dob %>" required>
+            
+        </div>
+        <div class="mb-3">
+            <label for="naziv">Status: </label>
+            <input class="form-control" type="text" id="status" name="student[status]"
+                value="<%= student.status %>" required>
+            
+        </div>
+        <div class="mb-3">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="student[email]" value="<%= student.email %>" class="form-control">
+        </div>
+        
+        <div class="d-flex flex-wrap mb-2">
+            <button class="btn btn-success">Spremi</button>
+            <a class="btn btn-primary ms-2" href="/admin/studenti/<%= student._id %>">Povratak</a>
+        </div>
+    </form>
