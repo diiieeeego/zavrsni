@@ -5,6 +5,10 @@ const User = require('../models/user');
 
 
 const adminSchema = new Schema({
+    username: {
+        type: String,
+        required: true
+    },
     ime: {
         type: String,
         required: true
