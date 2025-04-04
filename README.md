@@ -1,4 +1,4 @@
-#Academic Records Management App
+Academic Records Management App
 
 A full-stack CRUD application built with Express.js and EJS for managing academic records, deployed on Vercel. The app allows users to manage students, professors, exams, grades, subjects, and enrollments.
 Features
